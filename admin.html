@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h2>Contact Messages</h2>
+    <table class="table table-bordered" id="table"></table>
+</div>
+
+<script>
+fetch("api/getContacts.php")
+.then(res => res.json())
+.then(data => {
+    let html = "<tr><th>Name</th><th>Email</th><th>Message</th></tr>";
+
+    data.forEach(d => {
+        html += `<tr>
+            <td>${d.name}</td>
+            <td>${d.email}</td>
+            <td>${d.message}</td>
+        </tr>`;
+    });
+
+    document.getElementById("table").innerHTML = html;
+});
+</script>
